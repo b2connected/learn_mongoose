@@ -1,0 +1,71 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title 몽구스 서버
+    style.
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      table th, table td {
+        border: 1px solid black;
+      }
+  body
+    div
+      form#user-form
+        fieldset
+          legend 사용자 등록
+          div
+            input#username(type="text" placeholder="이름")
+          div
+            input#age(type="number" placeholder="나이")
+          div
+            input#married(type="checkbox")
+            label(for="married") 결혼 여부
+          button(type="submit") 회원가입
+    br
+    table#user-list
+      thead
+        tr
+          th 아이디
+          th 이름
+          th 나이
+          th 결혼여부
+      tbody
+        for user in users
+          tr
+            td= user._id
+            td= user.name
+            td= user.age
+            td= user.married ? '기혼' : '미혼'
+    br
+    block content
+  .timeline
+    form#join-form(action='/login' method='post')
+      .input-group
+        label(for='join-id') 아이디
+        input#join-email(type='id' name='id')
+      button#join-btn.btn(type='submit') 로그인
+    br
+    div
+      form#comment-form
+        fieldset
+          legend 게시판
+          div
+            input#userid(type="text" placeholder="아이디")
+          div
+            input#comment(type="text" placeholder="내용")
+          button(type="submit") 작성하기
+    br
+    table#comment-list
+      thead
+        tr
+          th 아이디
+          th 작성자
+          th 글
+          th 수정
+          th 삭제
+      tbody
+    script(src='/mongoose.js')
